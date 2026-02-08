@@ -1,0 +1,175 @@
+.register-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+.register-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4) var(--space-20);
+    gap: var(--space-6);
+}
+
+.register-content__logo {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.register-content__logo-image {
+    width: auto;
+    max-height: 40px;
+}
+
+.register-content__header {
+    width: 100%;
+    text-align: center;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-default);
+}
+
+.register-form__item-2-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+}
+
+.register-tabs {
+    width: 100%;
+    display: flex;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background-color: var(--color-primary-100);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-primary-200);
+}
+
+.register-tabs__button {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-600);
+    background-color: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.register-tabs__button:hover:not(.register-tabs__button--active) {
+    color: var(--color-primary-700);
+    background-color: var(--color-primary-200);
+}
+
+.register-tabs__button--active {
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary-500);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.register-register {
+    flex: 1;
+}
+
+.register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.register-form__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.register-form__input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-default);
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+}
+
+.register-form__input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.register-form__button {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-default);
+    background-color: var(--color-primary-500);
+    color: var(--color-text-inverse);
+}
+
+.register-register {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary-500);
+}
+
+.register-form__link {
+    font-size: var(--font-size-md);
+    color: var(--color-primary-500);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+}
+
+.register-hero {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary-500);
+}
+
+.register-hero__container {
+    position: relative;
+    width: 60%;
+    min-height: 50%;
+    padding: var(--space-2);
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.register-hero__container::after {
+    content: '';
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    right: var(--space-2);
+    bottom: var(--space-2);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: calc(var(--radius-lg) - var(--space-2));
+    pointer-events: none;
+}
+
+.register-hero__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: calc(var(--radius-lg) - var(--space-2));
+}
+
+.register-form__error {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}

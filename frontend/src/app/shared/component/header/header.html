@@ -1,0 +1,27 @@
+<header class="header">
+    <div class="header__left">
+        <div class="header__logo-container">
+            <img class="header__logo-image" src="assets/images/logo-conecta.png" alt="Conecta Logo">
+        </div>
+
+        <div>
+            <input class="header__search-input" type="search" placeholder="Pesquisar">
+        </div>
+    </div>
+
+    <div class="header__right">
+        <a class="header__link" href="">Vagas</a>
+        <a class="header__link" href="">Minhas candidaturas</a>
+        <div class="header__profile-container" (click)="toggleProfileMenu()">
+            <img class="header__profile-image" src="assets/images/profile-picture.png" alt="Usuário">
+            <lucide-icon [name]="ChevronDown"></lucide-icon>
+
+            @if (isProfileMenuOpen) {
+            <div class="header__profile-menu">
+                <a class="header__profile-menu-item" routerLink="/users/profile">Perfil</a>
+                <a class="header__profile-menu-item" (click)="handleLogout()">Sair</a>
+            </div>
+            }
+        </div>
+    </div>
+</header>
