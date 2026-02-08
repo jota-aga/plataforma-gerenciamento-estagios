@@ -32,5 +32,20 @@ O projeto está estruturado em dois diretórios principais (`/backend` e `/front
 * **TypeScript**
 * **HTML/CSS**
 
-## :construction: Status do Projeto
-:warning: **Em desenvolvimento** - Primeira Iteração (Configuração do Ambiente e Repositórios)...
+## 🚧 Status do Projeto
+
+### ✅ Iteração 1: Infraestrutura (Concluída)
+- [x] Configuração do ambiente Java 21 e Spring Boot.
+- [x] Configuração do banco de dados PostgreSQL.
+- [x] Inicialização do projeto Frontend com Angular.
+- [x] Criação dos repositórios e versionamento inicial.
+
+### 🚀 Iteração 2: Autenticação e Segurança (Em Andamento)
+**Backend (Finalizado):**
+- [x] Implementação do Spring Security e JWT.
+- [x] Criação da entidade Usuário e perfis (Admin/User).
+- [x] Endpoints de Login e Registro.
+
+**Frontend (Pendente):**
+- [ ] Desenvolvimento da tela de Login.
+- [ ] Integração com a API.
