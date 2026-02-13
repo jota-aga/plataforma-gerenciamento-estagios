@@ -40,7 +40,7 @@ O projeto está estruturado em dois diretórios principais (`/backend` e `/front
 - [x] Inicialização do projeto Frontend com Angular.
 - [x] Criação dos repositórios e versionamento inicial.
 
-### 🚀 Iteração 2: Autenticação e Segurança (Concluída)
+### ✅ Iteração 2: Autenticação e Segurança (Concluída)
 **Backend (Finalizado):**
 - [x] Implementação do Spring Security e JWT.
 - [x] Criação da entidade Usuário e perfis (Admin/User).
