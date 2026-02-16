@@ -1,0 +1,67 @@
+<main class="login-container">
+    <div class="login-content">
+        <div class="login-content__logo">
+            <img class="login-content__logo-image" src="assets/images/logo-conecta.png" alt="Conecta Logo">
+        </div>
+
+        <div class="login-content__container">
+            <div class="login-content__header">
+                <h1>Bem-vindo de volta!</h1>
+                <p class="login-content__description">Tenha acesso a milhares de vagas de estágio e empregos ou contrate
+                    profissionais qualificados.</p>
+
+                <div class="login-content__stats">
+                    <div class="login-content__stats-item">
+                        <span>+ de 10.000 alunos cadastrados</span>
+                        <lucide-icon [name]="Users" />
+                    </div>
+
+                    <div class="login-content__stats-item">
+                        <span>+ de 2.500 contratações realizadas</span>
+                        <lucide-icon [name]="UserCheck" />
+                    </div>
+                </div>
+            </div>
+
+            <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="login-form__item">
+                    <label for="email">Email:</label>
+                    <input class="login-form__input" type="email" id="email" name="email" formControlName="email"
+                        placeholder="Digite seu email">
+
+                    @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                    <div class="login-form__error">
+                        <span>Email inválido</span>
+                    </div>
+                    }
+                </div>
+
+                <div class="login-form__item">
+                    <label for="password">Senha:</label>
+                    <input class="login-form__input" type="password" id="password" name="password"
+                        formControlName="password" placeholder="Digite sua senha">
+
+                    @if (form.get('password')?.invalid && form.get('password')?.touched) {
+                    <div class="login-form__error">
+                        <span>Senha inválida</span>
+                    </div>
+                    }
+                </div>
+
+                <button class="login-form__button" type="submit">Entrar</button>
+
+                <div class="login-form__footer">
+                    <p>Não tem uma conta? <a class="login-form__link" routerLink="/auth/register">Crie sua conta</a></p>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div class="login-hero">
+        <div class="login-hero__container">
+            <img class="login-hero__image" src="assets/images/login-hero.jpg" alt="Login Hero">
+        </div>
+    </div>
+</main>
