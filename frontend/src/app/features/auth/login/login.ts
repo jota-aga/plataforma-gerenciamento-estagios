@@ -33,7 +33,14 @@ export class Login {
     this.authService.login({ ...this.form.value }).subscribe({
       next: (res) => {
         localStorage.setItem('auth_token', res.token);
-        this.router.navigate(['/users/profile']);
+
+        const role = this.authService.getRole()?.toUpperCase();
+
+        if (role === 'COMPANY') {
+          this.router.navigate(['/users/company']);
+        } else if (role === 'CANDIDATE') {
+          this.router.navigate(['/users/candidate']);
+        }
       },
       error: (err) => {
         console.error('Erro de login', err);

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { NgxMaskDirective } from 'ngx-mask';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [RouterLink, ReactiveFormsModule, NgxMaskDirective],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })

@@ -1,11 +1,17 @@
-import { Routes } from "@angular/router";
-import { Profile } from "./profile/profile";
-import { authGuard } from "../../core/services/auth.guard";
+import { Routes } from '@angular/router';
+import { authGuard } from '../../core/services/auth.guard';
+import { Candidate } from './candidate/candidate';
+import { Company } from './company/company';
 
 export const usersRoutes: Routes = [
-    {
-        path: 'profile',
-        component: Profile,
-        canActivate: [authGuard]
-    }
+  {
+    path: 'candidate',
+    component: Candidate,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'company',
+    component: Company,
+    canActivate: [authGuard],
+  },
 ];
