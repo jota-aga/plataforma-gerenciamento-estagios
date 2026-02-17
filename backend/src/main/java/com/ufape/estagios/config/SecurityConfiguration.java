@@ -1,10 +1,11 @@
 package com.ufape.estagios.config;
 
+import java.beans.Customizer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,6 +32,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/vagas").hasRole("COMPANY")
+                        .requestMatchers(HttpMethod.GET, "/api/vagas").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/vagas/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/vagas/**").hasRole("COMPANY")
+                        .requestMatchers(HttpMethod.DELETE, "/api/vagas/**").hasRole("COMPANY")
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
