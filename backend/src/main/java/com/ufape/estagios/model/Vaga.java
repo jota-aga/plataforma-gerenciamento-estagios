@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "vagas")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vaga{
+public class Vaga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,12 +30,14 @@ public class Vaga{
     @Column(nullable = false)
     private Localizacao localizacao;
     
+    @Enumerated(EnumType.STRING)
     private TipoVaga tipoVaga;
 
     private String periodoTurno;
 
     @Column(nullable = false)
     private LocalDate dataPublicacao;
+    
     private LocalDate prazoCandidatura;
     private String beneficios;
     private String salario;
@@ -46,6 +48,8 @@ public class Vaga{
     private Usuario empresa;
     
     private StatusDaVaga status;
+
+    private boolean ativa = true;
 
     @PrePersist
     protected void onCreate(){
