@@ -37,6 +37,10 @@ body {
     /* 24px */
     --font-size-3xl: 2rem;
     /* 32px */
+    --font-size-4xl: 2.5rem;
+    /* 40px */
+    --font-size-5xl: 3rem;
+    /* 48px */
 
     --font-weight-regular: 400;
     --font-weight-medium: 500;

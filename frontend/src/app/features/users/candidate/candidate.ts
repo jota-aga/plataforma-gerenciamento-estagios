@@ -3,8 +3,8 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
-import { JobsService } from '../../jobs/jobs.service';
-import { Vaga } from './model';
+import { JobsService } from '../../../shared/services/jobs.service';
+import { VagaModel } from '../../../shared/services/models/VagaModel';
 
 @Component({
   selector: 'app-profile',
@@ -19,8 +19,8 @@ export class Candidate implements OnInit {
   role: string | null = '';
   email: string | null = '';
 
-  vagas: Vaga[] = [];
-  vagasFiltradas: Vaga[] = [];
+  vagas: VagaModel[] = [];
+  vagasFiltradas: VagaModel[] = [];
 
   filtroArea: string = '';
   filtroTipo: string = '';

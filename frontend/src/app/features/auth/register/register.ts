@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class Register {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
+    private toastr: ToastrService,
   ) {
     this.candidateForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -46,11 +48,11 @@ export class Register {
       this.authService.register({ ...this.candidateForm.value, role: 'CANDIDATE' }).subscribe({
         next: (res) => {
           this.router.navigate(['/auth/login']);
-          alert('Registro realizado com sucesso');
+          this.toastr.success('Registro realizado com sucesso');
         },
         error: (err) => {
           console.error('Erro de login', err);
-          alert('Falha na Registro!');
+          this.toastr.error('Falha na Registro!');
         },
       });
     } else {
@@ -59,11 +61,11 @@ export class Register {
       this.authService.register({ ...this.companyForm.value, role: 'COMPANY' }).subscribe({
         next: (res) => {
           this.router.navigate(['/auth/login']);
-          alert('Registro realizado com sucesso');
+          this.toastr.success('Registro realizado com sucesso');
         },
         error: (err) => {
           console.error('Erro de login', err);
-          alert('Falha na Registro!');
+          this.toastr.error('Falha na Registro!');
         },
       });
     }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { LucideAngularModule, UserCheck, Users } from 'lucide-angular';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class Login {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private toastr: ToastrService,
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,10 +43,12 @@ export class Login {
         } else if (role === 'CANDIDATE') {
           this.router.navigate(['/users/candidate']);
         }
+
+        this.toastr.success('Login realizado com sucesso');
       },
       error: (err) => {
         console.error('Erro de login', err);
-        alert('Falha na autenticação!');
+        this.toastr.error('Falha na autenticação!');
       },
     });
   }

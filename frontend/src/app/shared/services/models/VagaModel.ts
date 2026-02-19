@@ -1,4 +1,4 @@
-export interface Vaga {
+export interface VagaModel {
   id: number;
   titulo: string;
   descricao: string;
