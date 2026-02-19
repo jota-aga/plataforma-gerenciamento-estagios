@@ -73,6 +73,6 @@ O projeto está estruturado em dois diretórios principais (`/backend` e `/front
 
 **Frontend (Em andamento):**
 
-- [ ] Serviço Angular (`JobsService`) com injeção de Token JWT.
-- [ ] Tela de Listagem de Vagas disponíveis.
-- [ ] Tela de Criação de Vagas com validação de formulário.
+- [x] Serviço Angular (`JobsService`) com injeção de Token JWT.
+- [x] Tela de Listagem de Vagas disponíveis.
+- [x] Tela de Criação de Vagas com validação de formulário.
