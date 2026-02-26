@@ -24,7 +24,7 @@ export class Company {
 
   vagas = signal<VagaModel[]>([]);
 
-  constructor(private jobsService: JobsService) { }
+  constructor(private readonly jobsService: JobsService) { }
 
   ngOnInit(): void {
     this.loadVagas();

@@ -13,8 +13,8 @@ import { VagaModel } from '../../../../shared/services/models/VagaModel';
   styleUrl: './form-job.css',
 })
 export class FormJob implements OnChanges {
-  private jobsService = inject(JobsService);
-  private toastr = inject(ToastrService);
+  private readonly jobsService = inject(JobsService);
+  private readonly toastr = inject(ToastrService);
 
   @Input() vaga: VagaModel | null = null;
 
@@ -23,7 +23,7 @@ export class FormJob implements OnChanges {
   @Output() close = new EventEmitter<boolean>();
 
   constructor(
-    private fb: FormBuilder,
+    private readonly fb: FormBuilder,
   ) {
     this.jobForm = this.fb.group({
       titulo: [this.vaga?.titulo ?? '', [Validators.required]],

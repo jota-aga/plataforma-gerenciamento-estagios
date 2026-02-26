@@ -13,8 +13,8 @@ import { VagaModel } from '../../../../shared/services/models/VagaModel';
   styleUrl: './delete-job.css',
 })
 export class DeleteJob {
-  private jobsService = inject(JobsService);
-  private toastr = inject(ToastrService);
+  private readonly jobsService = inject(JobsService);
+  private readonly toastr = inject(ToastrService);
 
   @Input() vaga: VagaModel | null = null;
 
