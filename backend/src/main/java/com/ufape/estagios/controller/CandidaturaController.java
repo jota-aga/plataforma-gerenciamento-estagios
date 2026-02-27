@@ -20,7 +20,7 @@ import com.ufape.estagios.model.Candidatura;
 import com.ufape.estagios.service.CandidaturaService;
 
 @RestController
-@RequestMapping("/candidatura")
+@RequestMapping("/api/candidatura")
 public class CandidaturaController {
 	
 	@Autowired
@@ -48,4 +48,6 @@ public class CandidaturaController {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
+	
+	
 }
