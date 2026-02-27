@@ -11,5 +11,8 @@ import com.ufape.estagios.model.Vaga;
 
 public interface CandidaturaRepository extends JpaRepository<Candidatura, Long>{
 	Optional<Candidatura> findByUsuarioAndVaga(Usuario usuario, Vaga vaga);
+	
 	List<Candidatura> findAllByVaga(Vaga vaga);
+	
+	List<Candidatura> findAllByUsuario(Usuario usuario);
 }

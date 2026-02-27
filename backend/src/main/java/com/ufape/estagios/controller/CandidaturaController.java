@@ -49,5 +49,12 @@ public class CandidaturaController {
 		return ResponseEntity.status(HttpStatus.OK).body(dto);
 	}
 	
-	
+	@GetMapping("/minhas-candidaturas")
+	public ResponseEntity<?> listarCandidaturasDoEstudante(){
+		List<Candidatura> candidaturas = candidaturaService.listarCandidaturasDoEstudante();
+		
+		List<CandidaturaResponseDTO> dto = CandidaturaMapper.toListDTO(candidaturas);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
+	}
 }

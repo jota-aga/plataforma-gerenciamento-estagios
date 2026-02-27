@@ -15,6 +15,7 @@ import com.ufape.estagios.exception.IdNotFoundException;
 import com.ufape.estagios.model.Candidatura;
 import com.ufape.estagios.model.StatusDaCandidatura;
 import com.ufape.estagios.model.StatusDaVaga;
+import com.ufape.estagios.model.UserRole;
 import com.ufape.estagios.model.Usuario;
 import com.ufape.estagios.model.Vaga;
 import com.ufape.estagios.repository.CandidaturaRepository;
@@ -63,7 +64,6 @@ public class CandidaturaService {
 		saveCandidatura(candidatura);
 	}
 
-	@Transactional
 	public List<Candidatura> listarCandidaturasDaVaga(Long vagaId){
 		Usuario usuario = getUsuarioAutenticado();
 		Vaga vaga = findVagaById(vagaId);
@@ -73,6 +73,16 @@ public class CandidaturaService {
 		}
 		
 		List<Candidatura> candidaturas = candidaturaRepository.findAllByVaga(vaga);
+		
+		return candidaturas;
+	}
+	
+	public List<Candidatura> listarCandidaturasDoEstudante() {
+		Usuario usuario = getUsuarioAutenticado();
+		
+		if(usuario.getRole() != UserRole.CANDIDATE) throw new AccessDeniedException("Apenas estudantes podem listar suas candidaturas");
+		
+		List<Candidatura> candidaturas = candidaturaRepository.findAllByUsuario(usuario);
 		
 		return candidaturas;
 	}
