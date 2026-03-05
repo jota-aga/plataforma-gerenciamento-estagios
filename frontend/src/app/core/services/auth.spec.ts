@@ -3,6 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { environment } from '../../../environments/environment';
 
 function makeFakeJwt(payload: object) {
   const header = btoa(JSON.stringify({ alg: 'none', typ: 'JWT' }));
@@ -44,7 +45,7 @@ describe('AuthService', () => {
    
     service.register(FAKE_USER).subscribe();
 
-    const req = httpMock.expectOne('https://backend-estagios.onrender.com/auth/register');
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/register`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(FAKE_USER);
 
@@ -98,14 +99,10 @@ describe('AuthService', () => {
     
     service.login(loginData).subscribe();
 
-    const reqs = httpMock.match('https://backend-estagios.onrender.com/auth/login');
-    expect(reqs.length).toBe(2);
-
-    for (const req of reqs) {
-      expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(loginData);
-      req.flush({ token: FAKE_TOKEN });
-    }
+    const req = httpMock.expectOne(`${environment.apiUrl}/auth/login`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(loginData);
+    req.flush({ token: FAKE_TOKEN });
 
     expect(localStorage.getItem(TOKEN_KEY)).toBe(FAKE_TOKEN);
   });
