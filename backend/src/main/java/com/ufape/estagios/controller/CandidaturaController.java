@@ -20,7 +20,6 @@ import com.ufape.estagios.model.Candidatura;
 import com.ufape.estagios.service.CandidaturaService;
 import com.ufape.estagios.dto.EstudanteResumoResponseDTO;
 import com.ufape.estagios.dto.EstudanteResponseDTO;
-import com.ufape.estagios.model.Usuario;
 
 @RestController
 @RequestMapping("/api/candidatura")
