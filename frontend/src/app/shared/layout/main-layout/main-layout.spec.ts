@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { MainLayout } from './main-layout';
 
@@ -7,6 +8,7 @@ describe('MainLayout', () => {
   let fixture: ComponentFixture<MainLayout>;
 
   beforeEach(async () => {
+    TestBed.resetTestingModule();
     await TestBed.configureTestingModule({
       imports: [MainLayout]
     })
