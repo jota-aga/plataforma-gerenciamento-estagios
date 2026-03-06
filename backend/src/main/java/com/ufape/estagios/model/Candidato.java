@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
@@ -34,5 +35,8 @@ public class Candidato {
 	
 	@Past
 	private LocalDate dataDeNascimento;
+	
+	@OneToOne
+	private Usuario usuario;
 	
 }

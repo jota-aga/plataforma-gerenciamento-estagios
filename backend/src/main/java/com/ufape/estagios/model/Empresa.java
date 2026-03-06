@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class Empresa {
 	
 	private String setor;
 	
-	@CNPJ
+	@CNPJ(message = "cnpj não é válido")
 	private String cnpj;
 	
 	private String link;
@@ -36,4 +37,7 @@ public class Empresa {
 	private String descricao;
 	
 	private String localizacao;
+	
+	@OneToOne
+	private Usuario usuario;
 }
