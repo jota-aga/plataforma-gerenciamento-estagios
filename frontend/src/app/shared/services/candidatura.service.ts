@@ -3,6 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { CandidaturaModel } from './models/CandidaturaModel';
+import { EstudanteModel, EstudanteResumoModel } from './models/EstudanteModel';
+import { StatusDaCandidatura } from './models/StatusDaCandidatura';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +28,21 @@ export class CandidaturaService {
 
   listarMinhasCandidaturas(): Observable<CandidaturaModel[]> {
     return this.http.get<CandidaturaModel[]>(`${this.apiUrl}/minhas-candidaturas`, this.getHeaders());
+  }
+
+  listarCandidaturasDaVaga(vagaId: number): Observable<CandidaturaModel[]> {
+    return this.http.get<CandidaturaModel[]>(`${this.apiUrl}/vaga/${vagaId}`, this.getHeaders());
+  }
+
+  atualizarStatus(id: number, status: StatusDaCandidatura): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, { status }, this.getHeaders());
+  }
+
+  getPerfilResumido(candidaturaId: number): Observable<EstudanteResumoModel> {
+    return this.http.get<EstudanteResumoModel>(`${this.apiUrl}/${candidaturaId}/perfil/resumo`, this.getHeaders());
+  }
+
+  getPerfilCompleto(candidaturaId: number): Observable<EstudanteModel> {
+    return this.http.get<EstudanteModel>(`${this.apiUrl}/${candidaturaId}/perfil`, this.getHeaders());
   }
 }

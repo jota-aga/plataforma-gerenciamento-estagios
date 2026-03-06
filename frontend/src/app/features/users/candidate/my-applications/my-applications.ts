@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Eye, Building2, MapPin, DollarSign, Clock, Briefcase, Calendar } from 'lucide-angular';
 import { CandidaturaService } from '../../../../shared/services/candidatura.service';
 import { JobsService } from '../../../../shared/services/jobs.service';
+import { EntrevistaService } from '../../../../shared/services/entrevista.service';
 import { CandidaturaModel } from '../../../../shared/services/models/CandidaturaModel';
 import { VagaModel } from '../../../../shared/services/models/VagaModel';
+import { EntrevistaModel } from '../../../../shared/services/models/EntrevistaModel';
 import { Modal } from '../../../../shared/component/modal/modal';
 
 @Component({
@@ -17,6 +19,7 @@ import { Modal } from '../../../../shared/component/modal/modal';
 export class MyApplications implements OnInit {
   private readonly candidaturaService = inject(CandidaturaService);
   private readonly jobsService = inject(JobsService);
+  private readonly entrevistaService = inject(EntrevistaService);
   private readonly cdr = inject(ChangeDetectorRef);
 
   readonly EyeIcon = Eye;
@@ -30,6 +33,9 @@ export class MyApplications implements OnInit {
   candidaturas: CandidaturaModel[] = [];
   modalOpen = false;
   selectedJob: VagaModel | null = null;
+
+  interviewModalOpen = false;
+  selectedInterview: EntrevistaModel | null = null;
 
   ngOnInit(): void {
     this.loadCandidaturas();
@@ -59,9 +65,27 @@ export class MyApplications implements OnInit {
     });
   }
 
+  viewInterview(candidatura: CandidaturaModel) {
+    this.entrevistaService.getEntrevistaPorCandidatura(candidatura.id).subscribe({
+      next: (entrevista) => {
+        this.selectedInterview = entrevista;
+        this.interviewModalOpen = true;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar detalhes da entrevista', err);
+        alert('Erro ao carregar detalhes da entrevista');
+      }
+    });
+  }
+
   closeModal() {
     this.modalOpen = false;
     this.selectedJob = null;
+  }
+
+  closeInterviewModal() {
+    this.interviewModalOpen = false;
+    this.selectedInterview = null;
   }
 
   formatDate(dateString: string): string {

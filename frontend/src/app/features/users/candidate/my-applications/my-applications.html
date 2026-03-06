@@ -28,9 +28,16 @@
                             </span>
                         </td>
                         <td>
-                            <button class="action-button" (click)="viewDetails(candidatura)" title="Ver detalhes">
-                                <lucide-icon [name]="EyeIcon" [size]="20"></lucide-icon>
-                            </button>
+                            <div class="actions">
+                                <button class="action-button" (click)="viewDetails(candidatura)" title="Ver detalhes da vaga">
+                                    <lucide-icon [name]="EyeIcon" [size]="20"></lucide-icon>
+                                </button>
+                                @if (candidatura.status === 'ENTREVISTA') {
+                                    <button class="action-button interview-btn" (click)="viewInterview(candidatura)" title="Ver detalhes da entrevista">
+                                        <lucide-icon [name]="ClockIcon" [size]="20"></lucide-icon>
+                                    </button>
+                                }
+                            </div>
                         </td>
                     </tr>
                 }
@@ -121,6 +128,25 @@
                     <h3>Benefícios</h3>
                     <p>{{ selectedJob.beneficios }}</p>
                 </div>
+            </div>
+        </div>
+    }
+</app-modal>
+
+<app-modal [open]="interviewModalOpen" (closeModal)="closeInterviewModal()" title="Detalhes da Entrevista">
+    @if (selectedInterview) {
+        <div class="interview-details">
+            <div class="detail-item">
+                <strong>Data e Hora:</strong>
+                <p>{{ selectedInterview.dataHora | date:'dd/MM/yyyy HH:mm' }}</p>
+            </div>
+            <div class="detail-item">
+                <strong>Formato:</strong>
+                <p>{{ selectedInterview.formato }}</p>
+            </div>
+            <div class="detail-item">
+                <strong>Detalhes:</strong>
+                <p>{{ selectedInterview.detalhes }}</p>
             </div>
         </div>
     }
