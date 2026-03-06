@@ -1,5 +1,6 @@
 import { Component, signal, OnInit } from '@angular/core';
-import { FolderOpen, LucideAngularModule, Pencil, Plus, Trash } from 'lucide-angular';
+import { Router } from '@angular/router';
+import { FolderOpen, LucideAngularModule, Pencil, Plus, Trash, Users } from 'lucide-angular';
 import { VagaModel } from '../../../shared/services/models/VagaModel';
 import { JobsService } from '../../../shared/services/jobs.service';
 import { Modal } from '../../../shared/component/modal/modal';
@@ -17,6 +18,7 @@ export class Company implements OnInit {
   readonly PencilIcon = Pencil;
   readonly TrashIcon = Trash;
   readonly FolderOpenIcon = FolderOpen;
+  readonly UsersIcon = Users;
 
   modalOpen = false;
   modalAction: 'create' | 'edit' | 'delete' = 'create';
@@ -24,7 +26,10 @@ export class Company implements OnInit {
 
   vagas = signal<VagaModel[]>([]);
 
-  constructor(private readonly jobsService: JobsService) { }
+  constructor(
+    private readonly jobsService: JobsService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadVagas();
@@ -66,5 +71,9 @@ export class Company implements OnInit {
     this.modalAction = 'delete';
     this.vaga = vaga;
     this.modalOpen = true;
+  }
+
+  viewApplications(vaga: VagaModel) {
+    this.router.navigate(['/users/company/vaga', vaga.id, 'candidaturas']);
   }
 }

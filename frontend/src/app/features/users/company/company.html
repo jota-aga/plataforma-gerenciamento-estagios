@@ -56,6 +56,9 @@
                         </td>
                         <td class="manage-jobs-container__jobs-table-body-row-cell">
                             <div class="manage-jobs-container__jobs-table-body-row-cell-buttons">
+                                <button class="manage-jobs-container__edit-button" (click)="viewApplications(vaga)">
+                                    <lucide-icon [name]="UsersIcon" />
+                                </button>
                                 <button class="manage-jobs-container__edit-button" (click)="setEditModal(vaga)">
                                     <lucide-icon [name]="PencilIcon" />
                                 </button>

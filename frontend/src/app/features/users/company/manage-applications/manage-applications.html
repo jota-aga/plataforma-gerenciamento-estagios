@@ -1,0 +1,117 @@
+<main class="container">
+    <div class="company-container">
+        <div class="manage-jobs-container">
+            <div class="manage-jobs-container__header">
+                <h2>Gerenciar Candidaturas</h2>
+                <a routerLink="/users/company" class="manage-jobs-container__create-button" style="text-decoration: none; width: auto; padding: 0 1rem; display: flex; align-items: center; justify-content: center;">
+                    Voltar
+                </a>
+            </div>
+
+            @if (candidaturas().length === 0) {
+            <div class="manage-jobs-container__empty-state">
+                <lucide-icon [name]="UserIcon" />
+                <p>Nenhuma candidatura encontrada para esta vaga</p>
+            </div>
+            } @else {
+            <table class="manage-jobs-container__jobs-table">
+                <thead class="manage-jobs-container__jobs-table-header">
+                    <tr>
+                        <th>Candidato</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="manage-jobs-container__jobs-table-body">
+                    @for (candidatura of candidaturas(); track candidatura.id) {
+                    <tr class="manage-jobs-container__jobs-table-body-row">
+                        <td class="manage-jobs-container__jobs-table-body-row-cell">
+                            {{ candidatura.nomeDoCandidato }}
+                        </td>
+                        <td class="manage-jobs-container__jobs-table-body-row-cell">
+                            {{ candidatura.data | date:'dd/MM/yyyy HH:mm' }}
+                        </td>
+                        <td class="manage-jobs-container__jobs-table-body-row-cell">
+                            <span [class]="getStatusClass(candidatura.status)">
+                                {{ candidatura.status }}
+                            </span>
+                        </td>
+                        <td class="manage-jobs-container__jobs-table-body-row-cell">
+                            <div class="manage-jobs-container__jobs-table-body-row-cell-buttons">
+                                <button class="action-button" (click)="openProfileModal(candidatura)" title="Ver Perfil">
+                                    <lucide-icon [name]="EyeIcon" />
+                                </button>
+                                
+                                <button class="status-button approve" (click)="updateStatus(candidatura, StatusDaCandidatura.APROVADA)" title="Aprovar">
+                                    <lucide-icon [name]="CheckCircleIcon" />
+                                </button>
+                                <button class="status-button reject" (click)="updateStatus(candidatura, StatusDaCandidatura.REPROVADA)" title="Reprovar">
+                                    <lucide-icon [name]="XCircleIcon" />
+                                </button>
+                                <button class="status-button interview" (click)="openInterviewModal(candidatura)" title="Agendar Entrevista">
+                                    <lucide-icon [name]="ClockIcon" />
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+</main>
+
+<app-modal [open]="profileModalOpen" (closeModal)="closeProfileModal()" title="Perfil do Candidato">
+    <div class="profile-modal-content">
+        @if (studentSummary()) {
+            <div class="profile-summary">
+                <h3>{{ studentSummary()?.nome }}</h3>
+                <p><strong>Curso:</strong> {{ studentSummary()?.curso }}</p>
+                <p><strong>Instituição:</strong> {{ studentSummary()?.instituicao }}</p>
+            </div>
+
+            @if (!viewingFullProfile) {
+                <button class="btn-full-profile" (click)="loadFullProfile()">Ver Perfil Completo</button>
+            }
+        }
+
+        @if (viewingFullProfile && studentFullProfile()) {
+            <div class="profile-full">
+                <hr>
+                <h4>Detalhes Completos</h4>
+                <p><strong>Email:</strong> {{ studentFullProfile()?.email }}</p>
+            </div>
+        }
+    </div>
+</app-modal>
+
+<app-modal [open]="interviewModalOpen" (closeModal)="closeInterviewModal()" title="Agendar Entrevista">
+    <div class="interview-modal-content">
+        <form [formGroup]="interviewForm" (ngSubmit)="scheduleInterview()">
+            <div class="form-group">
+                <label for="dataHora">Data e Hora</label>
+                <input type="datetime-local" id="dataHora" formControlName="dataHora" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="formato">Formato</label>
+                <select id="formato" formControlName="formato" class="form-control">
+                    <option [value]="FormatoEntrevista.ONLINE">Online</option>
+                    <option [value]="FormatoEntrevista.PRESENCIAL">Presencial</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="detalhes">Detalhes (Link ou Endereço)</label>
+                <textarea id="detalhes" formControlName="detalhes" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" (click)="closeInterviewModal()">Cancelar</button>
+                <button type="submit" class="btn-submit" [disabled]="interviewForm.invalid">Agendar</button>
+            </div>
+        </form>
+    </div>
+</app-modal>
